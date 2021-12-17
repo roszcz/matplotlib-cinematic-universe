@@ -3,7 +3,6 @@ from mcu.scenes import Scene, SceneDimensions
 import numpy as np
 import pandas as pd
 from pathlib import Path
-import multiprocessing as mp
 from matplotlib import pyplot as plt
 
 from typing import List, Tuple
@@ -42,22 +41,14 @@ class WavyBase(Scene):
 
         self.draw_all(phase_shift)
 
-    def render_mp(self) -> Path:
+    def render(self) -> Path:
         print('Rendering to:', self.content_dir)
 
         howmany_frames = 300
         phase_shifts = np.linspace(0, 2 * np.pi, howmany_frames, endpoint=False)
         df = pd.DataFrame({'phase_shift': phase_shifts, 'counter': range(howmany_frames)})
 
-        mp_step = 30
-        parts = [df[sta: sta + mp_step] for sta in range(0, howmany_frames, mp_step)]
-        with mp.Pool(20) as pool:
-            pool.map(self.animate_part, parts)
-
-        return self.content_dir
-
-    def animate_part(self, steps: pd.DataFrame) -> None:
-        for it, row in steps.iterrows():
+        for it, row in df.iterrows():
             phase_shift = row.phase_shift
             frame_counter = row.counter
 
@@ -65,6 +56,8 @@ class WavyBase(Scene):
             savepath = self.content_dir / f'{10000000 + frame_counter}.png'
             self.save_frame(savepath)
             self.frame_paths.append(savepath)
+
+        return self.content_dir
 
 
 class WavyScene(WavyBase):
