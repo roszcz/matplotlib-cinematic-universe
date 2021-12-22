@@ -2,14 +2,11 @@ from mcu.scenes import Scene, SceneDimensions
 
 import numpy as np
 import pandas as pd
+from tqdm import tqdm
 from pathlib import Path
 from matplotlib import pyplot as plt
 
 from typing import List, Tuple
-
-
-plt.rc('text', usetex=True)
-plt.rc('text.latex', preamble=r'\usepackage{amsmath}')
 
 
 def psi(x: np.array, phi: float, m: int = 4) -> np.array:
@@ -48,7 +45,7 @@ class WavyBase(Scene):
         phase_shifts = np.linspace(0, 2 * np.pi, howmany_frames, endpoint=False)
         df = pd.DataFrame({'phase_shift': phase_shifts, 'counter': range(howmany_frames)})
 
-        for it, row in df.iterrows():
+        for it, row in tqdm(df.iterrows(), total=len(df)):
             phase_shift = row.phase_shift
             frame_counter = row.counter
 
@@ -95,7 +92,7 @@ class WavyScene(WavyBase):
         ax.set_ylim(-1, 1)
 
         shift_pi = phase_shift / np.pi
-        title = fr'Phase shift: $\pmb{{\phi}} = {shift_pi:.2f}\pi$'
+        title = f'Phase shift: {shift_pi:.2f}'
         ax.set_title(title, loc='left', fontsize=16, usetex=True)
 
         ax.tick_params(
@@ -105,8 +102,8 @@ class WavyScene(WavyBase):
             top=False
         )
 
-        ax.set_xlabel(r'$x$', usetex=True, fontsize=16, loc='left')
-        y_label = fr'$\Psi^{{ {self.m} }}(\phi, x)$'
+        ax.set_xlabel('x', usetex=True, fontsize=16)
+        y_label = f'Psi, m = {self.m}'
         ax.set_ylabel(y_label, usetex=True, fontsize=16)
 
 
