@@ -158,7 +158,7 @@ class WaveList(WavyBase):
             labelbottom=False
         )
 
-        y_label = f'Psi, m = {m}'
+        y_label = f'm = {m}'
         ax.set_ylabel(y_label, fontsize=16)
 
 
@@ -243,5 +243,5 @@ class WaveListSpectrums(WavyBase):
             labelbottom=False
         )
 
-        y_label = f'Psi, m = {self.m}'
+        y_label = f'm = {m}'
         ax.set_ylabel(y_label, fontsize=16)
