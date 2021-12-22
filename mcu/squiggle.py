@@ -93,7 +93,7 @@ class WavyScene(WavyBase):
 
         shift_pi = phase_shift / np.pi
         title = f'Phase shift: {shift_pi:.2f}'
-        ax.set_title(title, loc='left', fontsize=16, usetex=True)
+        ax.set_title(title, loc='left', fontsize=16)
 
         ax.tick_params(
             axis='both',
@@ -102,9 +102,9 @@ class WavyScene(WavyBase):
             top=False
         )
 
-        ax.set_xlabel('x', usetex=True, fontsize=16)
+        ax.set_xlabel('x', fontsize=16)
         y_label = f'Psi, m = {self.m}'
-        ax.set_ylabel(y_label, usetex=True, fontsize=16)
+        ax.set_ylabel(y_label, fontsize=16)
 
 
 class WaveList(WavyBase):
@@ -134,8 +134,8 @@ class WaveList(WavyBase):
     def draw_all(self, phase_shift: float) -> None:
         shift_pi = phase_shift / np.pi
         title = fr'Phase shift: $\pmb{{\phi}} = {shift_pi:.2f}\pi$'
-        self.axes[0].set_title(title, loc='left', fontsize=16, usetex=True)
-        self.axes[-1].set_xlabel(r'$x$', usetex=True, fontsize=16)
+        self.axes[0].set_title(title, loc='left', fontsize=16)
+        self.axes[-1].set_xlabel(r'$x$', fontsize=16)
 
         for it, m in enumerate(self.m_values):
             ax = self.axes[it]
@@ -159,7 +159,7 @@ class WaveList(WavyBase):
         )
 
         y_label = fr'$\Psi^{{ {m} }}(\phi, x)$'
-        ax.set_ylabel(y_label, usetex=True, fontsize=16)
+        ax.set_ylabel(y_label, fontsize=16)
 
 
 class WaveListSpectrums(WavyBase):
@@ -194,12 +194,12 @@ class WaveListSpectrums(WavyBase):
     def draw_all(self, phase_shift: float) -> None:
         shift_pi = phase_shift / np.pi
         psi_title = fr'Phase shift: $\pmb{{\phi}} = {shift_pi:.2f}\pi$'
-        self.psi_axes[0].set_title(psi_title, loc='left', fontsize=16, usetex=True)
-        self.psi_axes[-1].set_xlabel(r'$x$', usetex=True, fontsize=16)
+        self.psi_axes[0].set_title(psi_title, loc='left', fontsize=16, )
+        self.psi_axes[-1].set_xlabel(r'$x$', fontsize=16)
 
         spectral_title = 'Power Spectrum'
-        self.spectral_axes[0].set_title(spectral_title, loc='center', fontsize=16, usetex=True)
-        self.spectral_axes[-1].set_xlabel('Frequency', usetex=True, fontsize=12)
+        self.spectral_axes[0].set_title(spectral_title, loc='center', fontsize=16, )
+        self.spectral_axes[-1].set_xlabel('Frequency', fontsize=12)
 
         for it, m in enumerate(self.m_values):
             psi_ax = self.psi_axes[it]
@@ -244,4 +244,4 @@ class WaveListSpectrums(WavyBase):
         )
 
         y_label = fr'$\Psi^{{ {m} }}(\phi, x)$'
-        ax.set_ylabel(y_label, usetex=True, fontsize=16)
+        ax.set_ylabel(y_label, fontsize=16)
