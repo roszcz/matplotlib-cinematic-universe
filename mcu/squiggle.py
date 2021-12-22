@@ -133,9 +133,9 @@ class WaveList(WavyBase):
 
     def draw_all(self, phase_shift: float) -> None:
         shift_pi = phase_shift / np.pi
-        title = fr'Phase shift: $\pmb{{\phi}} = {shift_pi:.2f}\pi$'
+        title = f'Phase shift: {shift_pi:.2f}'
         self.axes[0].set_title(title, loc='left', fontsize=16)
-        self.axes[-1].set_xlabel(r'$x$', fontsize=16)
+        self.axes[-1].set_xlabel('x', fontsize=16)
 
         for it, m in enumerate(self.m_values):
             ax = self.axes[it]
@@ -158,7 +158,7 @@ class WaveList(WavyBase):
             labelbottom=False
         )
 
-        y_label = fr'$\Psi^{{ {m} }}(\phi, x)$'
+        y_label = f'Psi, m = {self.m}'
         ax.set_ylabel(y_label, fontsize=16)
 
 
@@ -193,9 +193,9 @@ class WaveListSpectrums(WavyBase):
 
     def draw_all(self, phase_shift: float) -> None:
         shift_pi = phase_shift / np.pi
-        psi_title = fr'Phase shift: $\pmb{{\phi}} = {shift_pi:.2f}\pi$'
+        psi_title = f'Phase shift: {shift_pi:.2f}'
         self.psi_axes[0].set_title(psi_title, loc='left', fontsize=16, )
-        self.psi_axes[-1].set_xlabel(r'$x$', fontsize=16)
+        self.psi_axes[-1].set_xlabel('x', fontsize=16)
 
         spectral_title = 'Power Spectrum'
         self.spectral_axes[0].set_title(spectral_title, loc='center', fontsize=16, )
@@ -243,5 +243,5 @@ class WaveListSpectrums(WavyBase):
             labelbottom=False
         )
 
-        y_label = fr'$\Psi^{{ {m} }}(\phi, x)$'
+        y_label = f'Psi, m = {self.m}'
         ax.set_ylabel(y_label, fontsize=16)
