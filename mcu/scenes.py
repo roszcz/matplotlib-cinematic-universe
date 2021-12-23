@@ -3,22 +3,6 @@ import random
 import string
 import os
 
-from typing import NamedTuple
-
-
-class SceneDimensions(NamedTuple):
-    """Size of the Scene."""
-
-    width: int
-    """The width of the scene in figure units."""
-    height: int
-    """The height of the scene in figure units."""
-
-    @property
-    def ratio(self) -> float:
-        """Aspect ratio of the scene."""
-        return self.width / self.height
-
 
 class Scene:
     SCENE_ID = ''
