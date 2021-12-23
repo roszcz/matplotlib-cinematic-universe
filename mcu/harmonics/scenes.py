@@ -28,7 +28,7 @@ class QuantumCompute3D(Scene):
             # wspace=0
         )
 
-        self.figsize = [7.4, 4.8]
+        self.figsize = [8, 5]
         fig = plt.figure(
             figsize=self.figsize,
             facecolor='silver'
