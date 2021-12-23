@@ -126,8 +126,6 @@ class QuantumCompute3D(Scene):
         title = f'|{1-alpha:.2f}|{el1}{em1}> + {alpha:.2f}|{el2}{em2}>|^2'
         ax.text2D(0.01, 0.94, title, transform=ax.transAxes, fontsize=16)
 
-        self.figure.suptitle('Linear Combination of Spherical Harmonics', fontsize=16, y=0.95)
-
     def render(self) -> None:
         print('Rendering to:', self.content_dir)
         angles = range(360)
@@ -159,7 +157,7 @@ class QuantumCompute3D(Scene):
         for it, row in tqdm(df.iterrows(), total=len(df)):
             angle = row.angle
             alpha = row.alpha
-            frame_counter = row.counter
+            frame_counter = int(row.counter)
             self.draw(alpha=alpha, angle=angle)
             savepath = self.content_dir / f'{10000000 + frame_counter}.png'
             self.save_frame(savepath)
@@ -240,7 +238,7 @@ class QuantumPreview3D(Scene):
 
         self.draw_all(angle)
 
-    def render_mp(self) -> None:
+    def render(self) -> None:
         print('Rendering to:', self.content_dir)
         howmany_frames = 360
         angles = range(360)
