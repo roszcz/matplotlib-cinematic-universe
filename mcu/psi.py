@@ -1,5 +1,3 @@
-from mcu.scenes import Scene
-
 import numpy as np
 import pandas as pd
 from tqdm import tqdm
@@ -7,6 +5,8 @@ from pathlib import Path
 from matplotlib import pyplot as plt
 
 from typing import List, Tuple
+
+from mcu.scenes import Scene
 
 
 def psi_values(x: np.array, phi: float, m: int = 4) -> np.array:
