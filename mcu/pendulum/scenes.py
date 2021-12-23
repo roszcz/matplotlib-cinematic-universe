@@ -50,12 +50,11 @@ class PendulumBase(Scene):
 class SwingingPendulum(PendulumBase):
     SCENE_ID = 'DPSWING'
 
-    def __init__(self, swing: PendulumSwing, cycle: bool = True) -> None:
+    def __init__(self, swing: PendulumSwing) -> None:
         super().__init__()
 
         # Simulation data container
         self.swing = swing
-        self.is_cycle = cycle
         self.xy = swing.get_cartesian_dataframe()
         self.pq = swing.get_canonical_dataframe()
 
@@ -77,16 +76,8 @@ class SwingingPendulum(PendulumBase):
     def draw_all(self, idx: int) -> None:
         afterglow = 700
         start = idx - afterglow
-        if self.is_cycle:
-            if start < 0:
-                left = self.xy[start:]
-                right = self.xy[:idx]
-                part_xy = pd.concat([left, right])
-            else:
-                part_xy = self.xy[start: idx]
-        else:
-            start = max(0, start)
-            part_xy = self.xy[start: idx]
+        start = max(0, start)
+        part_xy = self.xy[start: idx]
         self.ax.plot(
             part_xy.x2,
             part_xy.y2,
